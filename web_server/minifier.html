@@ -1,0 +1,66 @@
+<html>
+
+<head>
+    <script src="additional/jquery.js"></script>
+    <script src="additional/htmlminifier.min.js"></script>
+    <script>
+    var minify = require('html-minifier').minify;
+    String.prototype.convertToHex = function(delim) {
+        return this.split("").map(function(c) {
+            return ("0" + c.charCodeAt(0).toString(16)).slice(-2);
+        }).join(delim || "");
+    };
+
+    function byte() {
+        var input = $('#input').val().convertToHex(",0x");
+        $('#output').val("0x" + input);
+        $("textarea").select();
+        document.execCommand('copy');
+        $('#info1').html($('#input').val().length);
+        $('#info2').html(input.length);
+    }
+
+    function byteifyHTML() {
+        var input = $('#input').val();
+        var input = "0x" + minify(input, {
+            collapseBooleanAttributes: true,
+            collapseWhitespace: true,
+            html5: true,
+            minifyCSS: true,
+            minifyJS: true,
+            processConditionalComments: true,
+            removeAttributeQuotes: true,
+            removeComments: true,
+            removeEmptyAttributes: true,
+            removeOptionalTags: true,
+            removeRedundantAttributes: true,
+            removeScriptTypeAttributes: true,
+            removeStyleLinkTypeAttributes: true,
+            removeTagWhitespace: true,
+            sortAttributes: true,
+            sortClassName: true,
+            trimCustomFragments: true,
+            useShortDoctype: true
+        }).convertToHex(",0x");;
+        $('#output').val(input);
+        $("textarea").select();
+        document.execCommand('copy');
+        $('#info1').html($('#input').val().length);
+        $('#info2').html(input.length);
+    }
+    </script>
+</head>
+
+<body>
+    <textarea id="input" rows=10 cols="100"></textarea>
+    <br />
+    <p id="info1"></p>
+    <button onclick="byte()">Byteify</button>
+    <button onclick="byteifyHTML()">Minify HTML + Byteify</button>
+    <br /><br>
+    <textarea id="output" rows=10 cols="100"></textarea>
+    <br />
+    <p id="info2"></p>
+</body>
+
+</html>
