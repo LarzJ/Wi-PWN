@@ -94,8 +94,8 @@
         function accept() {
             toTop()
             document.getElementById("card-wrapper").className = "accept";
-            document.getElementById("h").innerHTML = "Setup Wi-PWN";
-            document.title = "Setup Wi-PWN";
+            document.getElementById("h").innerHTML = "Installatie Wi-PWN";
+            document.title = "Installatie Wi-PWN";
             document.cookie = "accept=true";
             setTimeout(function() { document.getElementById("c3").className = "away" }, 500);
         }
@@ -143,14 +143,14 @@
                     getResponse("restartESP.json?", function(responseText) {
                         if (responseText == "true") {
                             document.getElementById("ss").className = "card horizontal s-s";
-                            document.getElementById("h").innerHTML = "Setup Complete";
+                            document.getElementById("h").innerHTML = "Installatie voltooid!";
                             showLoading("hide");
                         } else {
-                            notify("Failed to restart Wi-PWN! (E26)");
+                            notify("Kan niet opnieuw starten Wi-PWN! (E26)");
                             showLoading("hide");
                         }
                     }, function() {
-                        notify("Failed to restart Wi-PWN! (E27)");
+                        notify("Kan niet opnieuw starten Wi-PWN! (E27)");
                         showLoading("hide");
                     });
                 } else {
