@@ -7,7 +7,7 @@
          "n":"",
          "v":"IntelCor",
          "s":0,
-         "a":"EXAMPLE-COMPUTER"
+         "a":"VOORBEELD-COMPUTER"
       },
       {
          "i":1,
@@ -16,7 +16,7 @@
          "n":"",
          "v":"Samsung",
          "s":0,
-         "a":"EXAMPLE-ANDROID"
+         "a":"VOORBEELD-ANDROID"
       },
       {
          "i":2,
@@ -25,7 +25,7 @@
          "n":"",
          "v":"Apple",
          "s":0,
-         "a":"EXAMPLE-PHONE"
+         "a":"VOORBEELD-TELEFOON"
       },
       {
          "i":3,
@@ -34,16 +34,16 @@
          "n":"",
          "v":"Microsoft",
          "s":0,
-         "a":"EXAMPLE-SAVED"
+         "a":"VOORBEELD-OPGESLAGEN"
       }
    ],
    "nameList":[
       {
-         "n":"SAVED-DEVICE",
+         "n":"OPGESLAGEN-APPARAAT",
          "m":"00:00:00:00:00:11"
       },
       {
-         "n":"SAVED-DEVICE2",
+         "n":"OPGESLAGEN-APPARAAT2",
          "m":"11:00:00:00:00:11"
       }
    ]

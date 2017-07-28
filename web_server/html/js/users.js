@@ -7,7 +7,7 @@ var table = document.getElementsByTagName('table')[0],
     res = '', scanTime = '',
     previousCall = new Date().getTime(),
     selectAllState = 'not-checked',
-    tableHeaderHTML = '<tr><th width="11%"></th><th>Name</th><th>Client info</th><th>Pkts</th></tr>';
+    tableHeaderHTML = '<tr><th width="11%"></th><th>Naam</th><th>Clientgegevens</th><th>Pkts</th></tr>';
 
 function compare(a, b) {
     if (a.p > b.p) return -1;
@@ -28,16 +28,16 @@ function getResults() {
         try {
             res = JSON.parse(responseText);
         } catch (e) {
-            notify("ERROR: Clear the client list. (E5)");
+            notify("FOUT: Bij het wissen van clientlijst. (E5)");
             return;
         }
 
         res.clients = res.clients.sort(compare);
 
-        clientsFound.innerHTML = '(' + res.clients.length + ' found)';
+        clientsFound.innerHTML = '(' + res.clients.length + ' gevonden)';
 
         var tr = '';
-        if (res.clients.length > 1) tableHeaderHTML = '<tr><th width="11%"><input type="checkbox" name="selectAll" id="selectAll" value="false" onclick="selAll()" '+selectAllState+'><label class="checkbox" for="selectAll"></th><th>Name</th><th>Client info</th><th>Pkts</th></tr>';
+        if (res.clients.length > 1) tableHeaderHTML = '<tr><th width="11%"><input type="checkbox" name="selectAll" id="selectAll" value="false" onclick="selAll()" '+selectAllState+'><label class="checkbox" for="selectAll"></th><th>Naam</th><th>Clientgegevens</th><th>Pkts</th></tr>';
         tr += tableHeaderHTML;
 
         for (var i = 0; i < res.clients.length; i++) {
@@ -61,7 +61,7 @@ function getResults() {
             document.getElementById('saved-users').className = "";
         }
         clientNames.innerHTML = "(" + res.nameList.length + "/50)";
-        var tr = '<tr><th>Name</th><th><a onclick="clearNameList()" class="right" style="padding-right:10px">Reset</a></th></tr>';
+        var tr = '<tr><th>Naam</th><th><a onclick="clearNameList()" class="right" style="padding-right:10px">Opnieuw instellen</a></th></tr>';
         for (var i = 0; i < res.nameList.length; i++) {
 
             tr += '<tr>';
@@ -74,7 +74,7 @@ function getResults() {
         Waves.attach('.edit');
 
     }, function() {
-        notify("Reconnect to Wi-Fi network (E6)");
+        notify("Verbind opnieuw met het Wi-Fi netwerk (E6)");
         checkConnection();
     }, 3000);
 
@@ -86,7 +86,7 @@ function scan() {
             toggleBtn(true);
             checkConnection();
         } else {
-            notify("INFO: No Wi-Fi network(s) selected! (E7)'");
+            notify("INFO: Geen Wi-Fi netwerk(en) geselecteerd! (E7)'");
         }
 
     });
@@ -98,7 +98,7 @@ function select(num) {
         previousCall = time;
         getResponse("clientSelect.json?num=" + num, function(responseText) {
             if (responseText == "true") getResults();
-            else notify("ERROR: Bad response 'clientSelect.json' (E8)");
+            else notify("FOUT: Ongeldig antwoord 'clientSelect.json' (E8)");
         });
     }
 }
@@ -114,10 +114,10 @@ function selAll() {
 }
 
 function clearNameList() {
-    if (confirm("Remove all saved users?") == true) {
+    if (confirm("Alle gebruikers verwijderen?") == true) {
         getResponse("clearNameList.json", function(responseText) {
             if (responseText == "true") getResults();
-            else notify("ERROR: Bad response 'clearNameList.json' (E9)");
+            else notify("FOUT: Ongeldig antwoord 'clearNameList.json' (E9)");
         });
     }
 }
@@ -130,7 +130,7 @@ function addClient() {
             var nameReset = document.getElementById('cName');
             macReset.value = '';
             nameReset.value = '';
-        } else notify("ERROR: Bad response 'addClient.json' (E10)");
+        } else notify("FOUT: Ongeldig antwoord 'addClient.json' (E10)");
     });
 }
 
@@ -140,7 +140,7 @@ function setName(id) {
     if (newName != null) {
         getResponse("setName.json?id=" + id + "&name=" + newName, function(responseText) {
             if (responseText == "true") getResults();
-            else notify("ERROR: Bad response 'editNameList.json' (E11)");
+            else notify("FOUT: Ongeldig antwoord 'editNameList.json' (E11)");
         });
     }
 }
@@ -151,7 +151,7 @@ function editNameList(id) {
     if (newName != null) {
         getResponse("editNameList.json?id=" + id + "&name=" + newName, function(responseText) {
             if (responseText == "true") getResults();
-            else notify("ERROR: Bad response 'editNameList.json' (E12)");
+            else notify("FOUT: Ongeldig antwoord 'editNameList.json' (E12)");
         });
     }
 }
@@ -159,14 +159,14 @@ function editNameList(id) {
 function deleteName(id) {
     getResponse("deleteName.json?num=" + id, function(responseText) {
         if (responseText == "true") getResults();
-        else notify("ERROR: Bad response 'deleteName.json' (E13)");
+        else notify("FOUT: Ongeldig antwoord 'deleteName.json' (E13)");
     });
 }
 
 function add(id) {
     getResponse("addClientFromList.json?num=" + id, function(responseText) {
         if (responseText == "true") getResults();
-        else notify("ERROR: Bad response 'addClientFromList.json' (E14)");
+        else notify("FOUT: Ongeldig antwoord 'addClientFromList.json' (E14)");
     });
 }
 

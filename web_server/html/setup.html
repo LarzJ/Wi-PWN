@@ -142,23 +142,23 @@
                     autoReload();
                     getResponse("restartESP.json?", function(responseText) {
                         if (responseText == "true") {
-                            document.getElementById("ss").className = "card horizontal s-s";
+                            1
                             document.getElementById("h").innerHTML = "Installatie voltooid!";
                             showLoading("hide");
                         } else {
-                            notify("Kan niet opnieuw starten Wi-PWN! (E26)");
+                            notify("Kan Wi-PWN niet opnieuw starten! (E26)");
                             showLoading("hide");
                         }
                     }, function() {
-                        notify("Kan niet opnieuw starten Wi-PWN! (E27)");
+                        notify("Kan Wi-PWN niet opnieuw starten! (E27)");
                         showLoading("hide");
                     });
                 } else {
-                    notify("Failed to save settings! (E28)");
+                    notify("Opslaan van de instellingen is mislukt! (E28)");
                     showLoading("hide");
                 }
             }, function() {
-                notify("Failed to save settings! (E29)");
+                notify("Opslaan van de instellingen is mislukt! (E29)");
                 showLoading("hide");
             });
         }

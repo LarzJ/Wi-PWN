@@ -38,7 +38,7 @@ function switchPin(pin) {
 }
 
 function resetPins() {
-    if (confirm("Reset saved entries?") == true) {
+    if (confirm("Opgeslagen invoer opnieuw instellen?") == true) {
         showLoading();
         getResponse("controlReset.json", function(responseText) {
             if (responseText == "true") {
@@ -47,11 +47,11 @@ function resetPins() {
                 restart(true);
                 setTimeout(function() { window.location = "/" }, 3000)
             } else {
-                notify("Failed to reset saved entries! (E34)");
+                notify("Kan opgeslagen invoer niet opnieuw instellen! (E34)");
                 indicate(false);
             }
         }, function() {
-            notify("Failed to reset saved entries (E35)");
+            notify("Kan opgeslagen invoer niet opnieuw instellen! (E35)");
             indicate(false);
         });
     }

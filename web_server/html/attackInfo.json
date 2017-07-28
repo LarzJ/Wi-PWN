@@ -1,14 +1,14 @@
 {
    "aps":[
-      "Example network 1",
-      "Example network 2",
-      "Example network 3"
+      "Voorbeeld network 1",
+      "Voorbeeld network 2",
+      "Voorbeeld network 3"
    ],
    "clients":[
       "11:22:33:44:55:66 IntelCor - ",
       "22:33:44:55:66:77 Samsung - ",
       "33:44:55:66:77:88 Apple - ",
-      "00:00:00:00:00:11 Microsoft - SAVED-DEVICE"
+      "00:00:00:00:00:11 Microsoft - OPGESLAGEN-APPARAAT}"
    ],
    "attacks":[
       {

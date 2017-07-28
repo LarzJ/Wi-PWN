@@ -5,7 +5,7 @@ var table = document.getElementsByTagName('table')[0],
     startStopScan = getE('startStopScan'),
     selectAll = getE('selectAll'),
     autoScan = false,
-    tableHeaderHTML = '<tr><th width="8%"></th><th width="17%">Signal</th><th width="22%">SSID</th><th width="15%">Security</th><th width="8%">Ch.</th></tr>',
+    tableHeaderHTML = '<tr><th width="8%"></th><th width="17%">Signaal</th><th width="22%">SSID</th><th width="15%">Beveiliging</th><th width="8%">Kanaal</th></tr>',
     selectAllState = 'not-checked',
     previousCall = new Date().getTime(),
     url = window.location.href,
@@ -38,10 +38,10 @@ function getResults() {
     getResponse("APScanResults.json", function(responseText) {
         var res = JSON.parse(responseText);
         res.aps = res.aps.sort(compare);
-        networkInfo.innerHTML = '(' + res.aps.length + ')';
+        networkInfo.innerHTML = '(' + res.aps.length + ' gevonden)';
         if (res.aps.length == 0) scan()
         apMAC.innerHTML = "";
-        if (res.multiAPs == 1) tableHeaderHTML = '<tr><th width="8%"><input type="checkbox" name="selectAll" id="selectAll" value="false" onclick="selAll()" ' + selectAllState + '><label class="checkbox" for="selectAll"></th><th width="17%">Signal</th><th width="22%">SSID</th><th width="15%">Security</th><th width="8%">Ch.</th></tr>';
+        if (res.multiAPs == 1) tableHeaderHTML = '<tr><th width="8%"><input type="checkbox" name="selectAll" id="selectAll" value="false" onclick="selAll()" ' + selectAllState + '><label class="checkbox" for="selectAll"></th><th width="17%">Signaal</th><th width="22%">SSID</th><th width="15%">Beveiliging</th><th width="8%">Kanaal</th></tr>';
         var tr = '';
         if (res.aps.length > 0) tr += tableHeaderHTML;
 
@@ -83,7 +83,7 @@ function scan() {
     toggleScan(false);
     getResponse("APScan.json", function(responseText) {
         if (responseText == "true") getResults();
-        else notify("ERROR: Bad response 'APScan.json' (E3)");
+        else notify("FOUT: Ongeldig antwoord 'APScan.json' (E3)");
         setTimeout(function(){toggleScan(true)}, 700);
     });
 }
@@ -94,7 +94,7 @@ function select(num) {
         previousCall = time;
         getResponse("APSelect.json?num=" + num, function(responseText) {
             if (responseText == "true") getResults();
-            else notify("ERROR: Bad response 'APSelect.json' (E4)");
+            else notify("FOUT: Ongeldig antwoord 'APSelect.json' (E4)");
         });
     }
 }
