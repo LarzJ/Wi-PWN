@@ -142,7 +142,6 @@
                     autoReload();
                     getResponse("restartESP.json?", function(responseText) {
                         if (responseText == "true") {
-                            1
                             document.getElementById("h").innerHTML = "Installatie voltooid!";
                             showLoading("hide");
                         } else {

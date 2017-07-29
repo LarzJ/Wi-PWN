@@ -5,7 +5,7 @@ var table = document.getElementsByTagName('table')[0],
     startStopScan = getE('startStopScan'),
     selectAll = getE('selectAll'),
     autoScan = false,
-    tableHeaderHTML = '<tr><th width="8%"></th><th width="17%">Signaal</th><th width="22%">SSID</th><th width="15%">Beveiliging</th><th width="8%">Kanaal</th></tr>',
+    tableHeaderHTML = '<tr><th width="8%"></th><th width="17%">Signaal</th><th width="22%">SSID</th><th width="15%">Beveiliging</th><th width="8%">Kan.</th></tr>',
     selectAllState = 'not-checked',
     previousCall = new Date().getTime(),
     url = window.location.href,
@@ -38,10 +38,10 @@ function getResults() {
     getResponse("APScanResults.json", function(responseText) {
         var res = JSON.parse(responseText);
         res.aps = res.aps.sort(compare);
-        networkInfo.innerHTML = '(' + res.aps.length + ' gevonden)';
+        networkInfo.innerHTML = '(' + res.aps.length + ')';
         if (res.aps.length == 0) scan()
         apMAC.innerHTML = "";
-        if (res.multiAPs == 1) tableHeaderHTML = '<tr><th width="8%"><input type="checkbox" name="selectAll" id="selectAll" value="false" onclick="selAll()" ' + selectAllState + '><label class="checkbox" for="selectAll"></th><th width="17%">Signaal</th><th width="22%">SSID</th><th width="15%">Beveiliging</th><th width="8%">Kanaal</th></tr>';
+        if (res.multiAPs == 1) tableHeaderHTML = '<tr><th width="8%"><input type="checkbox" name="selectAll" id="selectAll" value="false" onclick="selAll()" ' + selectAllState + '><label class="checkbox" for="selectAll"></th><th width="17%">Signaal</th><th width="22%">SSID</th><th width="15%">Beveiliging</th><th width="8%">Kan.</th></tr>';
         var tr = '';
         if (res.aps.length > 0) tr += tableHeaderHTML;
 
@@ -69,14 +69,27 @@ function getResults() {
             }
 
             var signalPercent = Math.round((1-((res.aps[i].r+30)/-70))*100);
-            tr += '<td class="WiFi"><div>' + eval(wifiIndicator) + '</div><div><span style="background:linear-gradient(135deg, rgba(0,0,0,0.3) '+signalPercent+'%,rgba(0,0,0,0.07) '+signalPercent+'%)"></span><span>' + res.aps[i].r + '</span></div></td>';
+            if (i == 0) {var tdID = ' id="resizeEventTD"'} else {var tdID = ''}
+            tr += '<td class="WiFi"'+tdID+'><div>' + eval(wifiIndicator) + '</div><div><span style="background:linear-gradient(135deg, '+getColor(signalPercent)+' '+signalPercent+'%,rgba(0,0,0,0.15) '+signalPercent+'%)"></span><span style="color:'+getColor(signalPercent, true)+'">' + res.aps[i].r + '</span></div></td>';
             tr += '<td>' + res.aps[i].ss + '</td>';
             tr += '<td>' + getEncryption(res.aps[i].e) + '</td>';
             tr += '<td>' + res.aps[i].c + '</td>';
             tr += '</tr>';
         }
         table.innerHTML = tr;
+        checkSize()
     });
+}
+
+function getColor(value, lighten){
+    var lightness = 50;
+    var saturation = 75;
+    if (lighten == true) lightness = 90
+    if (value > 120) value = 100
+    if (value > 90) saturation = 60;
+    value = 100 - value;
+    var hue=((1-(value/87))*100).toString(10);
+    return ["hsl(",hue,","+saturation+"%,"+lightness+"%)"].join("");
 }
 
 function scan() {
@@ -108,5 +121,15 @@ function selAll() {
     }
 }
 
+window.onresize = function(event){checkSize()}
+
+function checkSize() {
+    var w = document.getElementById('resizeEventTD').clientWidth;
+    if (w <= 99) {
+        document.getElementById('apscan').className = 'pointUp'
+    } else {
+        document.getElementById('apscan').className = ''
+    }
+}
 
 getResults();
