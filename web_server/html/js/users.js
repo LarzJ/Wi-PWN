@@ -102,7 +102,7 @@ function select(num) {
         previousCall = time;
         getResponse("clientSelect.json?num=" + num, function(responseText) {
             if (responseText == "true") getResults();
-            else notify("FOUT: Ongeldig antwoord 'clientSelect.json' (E8)");
+            else notify("FOUT: Ongeldige aanvraag 'clientSelect.json' (E8)");
         });
     }
 }
@@ -121,7 +121,7 @@ function clearNameList() {
     if (confirm("Alle gebruikers verwijderen?") == true) {
         getResponse("clearNameList.json", function(responseText) {
             if (responseText == "true") getResults();
-            else notify("FOUT: Ongeldig antwoord 'clearNameList.json' (E9)");
+            else notify("FOUT: Ongeldige aanvraag 'clearNameList.json' (E9)");
         });
     }
 }
@@ -134,7 +134,7 @@ function addClient() {
             var nameReset = document.getElementById('cName');
             macReset.value = '';
             nameReset.value = '';
-        } else notify("FOUT: Ongeldig antwoord 'addClient.json' (E10)");
+        } else notify("FOUT: Ongeldige aanvraag 'addClient.json' (E10)");
     });
 }
 
@@ -144,7 +144,7 @@ function setName(id) {
     if (newName != null) {
         getResponse("setName.json?id=" + id + "&name=" + newName, function(responseText) {
             if (responseText == "true") getResults();
-            else notify("FOUT: Ongeldig antwoord 'editNameList.json' (E11)");
+            else notify("FOUT: Ongeldige aanvraag 'editNameList.json' (E11)");
         });
     }
 }
@@ -155,7 +155,7 @@ function editNameList(id) {
     if (newName != null) {
         getResponse("editNameList.json?id=" + id + "&name=" + newName, function(responseText) {
             if (responseText == "true") getResults();
-            else notify("FOUT: Ongeldig antwoord 'editNameList.json' (E12)");
+            else notify("FOUT: Ongeldige aanvraag 'editNameList.json' (E12)");
         });
     }
 }
@@ -163,14 +163,14 @@ function editNameList(id) {
 function deleteName(id) {
     getResponse("deleteName.json?num=" + id, function(responseText) {
         if (responseText == "true") getResults();
-        else notify("FOUT: Ongeldig antwoord 'deleteName.json' (E13)");
+        else notify("FOUT: Ongeldige aanvraag 'deleteName.json' (E13)");
     });
 }
 
 function add(id) {
     getResponse("addClientFromList.json?num=" + id, function(responseText) {
         if (responseText == "true") getResults();
-        else notify("FOUT: Ongeldig antwoord 'addClientFromList.json' (E14)");
+        else notify("FOUT: Ongeldige aanvraag 'addClientFromList.json' (E14)");
     });
 }
 function countdown(stop) {

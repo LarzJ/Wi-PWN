@@ -96,7 +96,7 @@ function scan() {
     toggleScan(false);
     getResponse("APScan.json", function(responseText) {
         if (responseText == "true") getResults();
-        else notify("FOUT: Ongeldig antwoord 'APScan.json' (E3)");
+        else notify("FOUT: Ongeldige aanvraag 'APScan.json' (E3)");
         setTimeout(function(){toggleScan(true)}, 700);
     });
 }
@@ -107,7 +107,7 @@ function select(num) {
         previousCall = time;
         getResponse("APSelect.json?num=" + num, function(responseText) {
             if (responseText == "true") getResults();
-            else notify("FOUT: Ongeldig antwoord 'APSelect.json' (E4)");
+            else notify("FOUT: Ongeldige aanvraag 'APSelect.json' (E4)");
         });
     }
 }

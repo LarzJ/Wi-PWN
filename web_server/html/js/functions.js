@@ -44,7 +44,7 @@ function defaultMetaColor() {
 
 
 function checkConnection() {
-    setTimeout(function() {getResponse("ClientScanTime.json", function(responseText) {window.location.reload()}, function() {notify("Reconnect and reload this page (E22)");checkConnection()}, 2000)}, 1300);
+    setTimeout(function() {getResponse("ClientScanTime.json", function(responseText) {window.location.reload()}, function() {notify("Maak opnieuw verbinding en laad de pagina opnieuw (E22)");checkConnection()}, 2000)}, 1300);
 }
 
 function autoReload() {
@@ -60,11 +60,11 @@ function restart(noIndication) {
     }
     getResponse("restartESP.json?", function(responseText) {
         if (responseText !== "true") {
-            notify("Failed to restart Wi-PWN! (E23)");
+            notify("Kan Wi-PWN niet opnieuw starten! (E23)");
             showLoading("hide");
         }
     }, function() {
-        notify("Failed to restart Wi-PWN! (E24)");
+        notify("Kan Wi-PWN niet opnieuw starten! (E24)");
         showLoading("hide");
     });
 }
@@ -84,7 +84,7 @@ function showLoading(state) {
 function getResponse(adr, callback, timeoutCallback, timeout, method) {
     if (timeoutCallback == null) {
         timeoutCallback = function() {
-            notify("Reconnect and reload this page (E25)");
+            notify("Maak opnieuw verbinding en laad de pagina opnieuw. (E25)");
             autoReload();
         };
     }
@@ -141,7 +141,7 @@ function vibrate() {
     document.getElementsByTagName('head')[0].appendChild(link);
 
 /* Dynamically add footer */
-    document.getElementsByTagName("footer")[0].innerHTML = "<div class=footer><ul><li><a href=https://samdenty99.github.io/r?https://github.com/samdenty99/Wi-PWN target=blank_ style=color:#fff;font-weight:400><b>Wi-PWN</b> &copy; 2017</a><li><a href=https://samdenty99.github.io/r?https://github.com/samdenty99/Wi-PWN target=blank_>GitHub</a><li><a href=https://samdenty99.github.io/r?https://discord.gg/X2NjhYK target=blank_>Discord</a><li><a href=https://samdenty99.github.io/r?https://github.com/samdenty99/Wi-PWN/wiki target=blank_>Guide</a></ul></div><a href=https://samdenty99.github.io/about target=blank_ class=sub-section-attribution>Designed by Sam Denty - @samdenty99</a>";
+    document.getElementsByTagName("footer")[0].innerHTML = "<div class=footer><ul><li><a href=https://samdenty99.github.io/r?https://github.com/samdenty99/Wi-PWN target=blank_ style=color:#fff;font-weight:400><b>Wi-PWN</b> &copy; 2017</a><li><a href=https://samdenty99.github.io/r?https://github.com/samdenty99/Wi-PWN target=blank_>GitHub</a><li><a href=https://samdenty99.github.io/r?https://discord.gg/X2NjhYK target=blank_>Discord</a><li><a href=https://samdenty99.github.io/r?https://github.com/samdenty99/Wi-PWN/wiki target=blank_>Documentatie</a></ul></div><a href=https://samdenty99.github.io/about target=blank_ class=sub-section-attribution>Ontwerp door Sam Denty - @samdenty99</a>";
 
 /* Dynamically add spinner */
     document.getElementById("spinner-container").innerHTML = "<svg class=spinner viewBox='0 0 66 66'><circle class=path cx=33 cy=33 fill=none r=30 stroke-linecap=round stroke-width=6></circle></svg> <svg class=success-svg viewBox='0 0 1000 1000'><path d=M908.3,132.5L336.7,704.2l-245-245L10,540.8l326.7,326.7l81.7-81.7L990,214.2L908.3,132.5z /></svg> <svg class=failed-svg viewBox='0 0 19 19'><line stroke-width=2 x1=1 x2=18 y1=1 y2=18></line><line stroke-width=2 x1=18 x2=1 y1=1 y2=18></line></svg>"
@@ -154,7 +154,7 @@ function vibrate() {
     document.body.insertAdjacentHTML('afterbegin','<div class="background"><svg preserveAspectRatio=none viewBox="0 0 1440 810"xmlns=http://www.w3.org/2000/svg><path d="M592.66 0c-15 64.092-30.7 125.285-46.598 183.777C634.056 325.56 748.348 550.932 819.642 809.5h419.672C1184.518 593.727 1083.124 290.064 902.637 0H592.66z"fill=rgba(0,0,0,.14)></path><path d="M545.962 183.777c-53.796 196.576-111.592 361.156-163.49 490.74 11.7 44.494 22.8 89.49 33.1 134.883h404.07c-71.294-258.468-185.586-483.84-273.68-625.623z"fill=rgba(0,0,0,.09)></path><path d="M153.89 0c74.094 180.678 161.088 417.448 228.483 674.517C449.67 506.337 527.063 279.465 592.56 0H153.89z"fill=rgba(0,0,0,.1)></path><path d="M153.89 0H0v809.5h415.57C345.477 500.938 240.884 211.874 153.89 0z"fill=rgba(0,0,0,0.07)></path><path d="M1144.22 501.538c52.596-134.583 101.492-290.964 134.09-463.343 1.2-6.1 2.3-12.298 3.4-18.497 0-.2.1-.4.1-.6 1.1-6.3 2.3-12.7 3.4-19.098H902.536c105.293 169.28 183.688 343.158 241.684 501.638v-.1z"fill=rgba(0,0,0,.08)></path><path d="M1285.31 0c-2.2 12.798-4.5 25.597-6.9 38.195C1321.507 86.39 1379.603 158.98 1440 257.168V0h-154.69z"fill=rgba(0,0,0,.12)></path><path d="M1278.31,38.196C1245.81,209.874 1197.22,365.556 1144.82,499.838L1144.82,503.638C1185.82,615.924 1216.41,720.211 1239.11,809.6L1439.7,810L1439.7,256.768C1379.4,158.78 1321.41,86.288 1278.31,38.195L1278.31,38.196z"fill=rgba(0,0,0,.09)></path></svg></div>');
 
 /* Dynamically add reboot button */
-    document.body.insertAdjacentHTML('afterbegin','<div class="reboot-container"><div class=reboot-inner><svg onclick="restart()" class=reboot viewBox="0 0 22 23"><path d="M11,4C13.05,4 15.09,4.77 16.65,6.33C19.78,9.46 19.77,14.5 16.64,17.64C14.81,19.5 12.3,20.24 9.91,19.92L10.44,17.96C12.15,18.12 13.93,17.54 15.24,16.23C17.58,13.89 17.58,10.09 15.24,7.75C14.06,6.57 12.53,6 11,6V10.58L6.04,5.63L11,0.68V4M5.34,17.65C2.7,15 2.3,11 4.11,7.94L5.59,9.41C4.5,11.64 4.91,14.39 6.75,16.23C7.27,16.75 7.87,17.16 8.5,17.45L8,19.4C7,19 6.12,18.43 5.34,17.65Z"fill=#fff /></svg></div><span class="tooltip">Reboot</span></div>');
+    document.body.insertAdjacentHTML('afterbegin','<div class="reboot-container"><div class=reboot-inner><svg onclick="restart()" class=reboot viewBox="0 0 22 23"><path d="M11,4C13.05,4 15.09,4.77 16.65,6.33C19.78,9.46 19.77,14.5 16.64,17.64C14.81,19.5 12.3,20.24 9.91,19.92L10.44,17.96C12.15,18.12 13.93,17.54 15.24,16.23C17.58,13.89 17.58,10.09 15.24,7.75C14.06,6.57 12.53,6 11,6V10.58L6.04,5.63L11,0.68V4M5.34,17.65C2.7,15 2.3,11 4.11,7.94L5.59,9.41C4.5,11.64 4.91,14.39 6.75,16.23C7.27,16.75 7.87,17.16 8.5,17.45L8,19.4C7,19 6.12,18.43 5.34,17.65Z"fill=#fff /></svg></div><span class="tooltip">Herstarten</span></div>');
 
 /* Compressed Material design WiFi icons generator
  * AUTHOR: SAM DENTY         github.com/samdenty99
